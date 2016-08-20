@@ -69,6 +69,10 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   #
+
+
+  # if you're serving static files, it's better to use nfs for sharing between the vm and vagrant
+  #config.vm.synced_folder ".", "/vagrant", type: "nfs"
   config.vm.provision "shell", path:"setup_system.sh"
   config.vm.provision "shell", path:"setup_project.sh", privileged: false
 end
