@@ -1,10 +1,10 @@
 package main
 
 import (
-	"app/controller"
-	"app/dataModel"
-	"app/storage"
 	"github.com/gorilla/mux"
+	"github.com/grameh/GoDevEnvironment/controller"
+	"github.com/grameh/GoDevEnvironment/dataModel"
+	"github.com/grameh/GoDevEnvironment/storage"
 	"net/http"
 )
 
@@ -29,7 +29,7 @@ func main() {
 	router.HandleFunc("/subject/{subjectId}", subjectController.Update).Methods("PATCH")
 	router.HandleFunc("/subject/{subjectId}", subjectController.Delete).Methods("DELETE")
 
-	router.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
+	router.PathPrefix("/static").Handler(http.FileServer(http.Dir("./static/")))
 
 	http.Handle("/", router)
 	http.ListenAndServe(":8080", nil)
